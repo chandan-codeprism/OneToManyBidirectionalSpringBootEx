@@ -22,7 +22,7 @@ public class CommentController {
 
     //1. To  add new comment
     @PostMapping("/add")
-    public ResponseEntity<String> save(@RequestBody Comment comment) {
+    public ResponseEntity<String> addComment(@RequestBody Comment comment) {
         ResponseEntity<String> resp = null;
         try {
             String message = commentService.saveComment(comment);
@@ -38,7 +38,7 @@ public class CommentController {
 
     //2. to update comment
     @PutMapping("/update")
-    public ResponseEntity<String> editComment(@RequestBody Comment comment) {
+    public ResponseEntity<String> updateComment(@RequestBody Comment comment) {
         ResponseEntity<String> resp = null;
         try {
 
@@ -67,7 +67,7 @@ public class CommentController {
 
     // 4.get all comments
     @GetMapping("/all")
-    public ResponseEntity<?> getAll() {
+    public ResponseEntity<?> getAllComments() {
         ResponseEntity<?> resp = null;
         try {
             List<Comment> list = commentService.getAllComment();

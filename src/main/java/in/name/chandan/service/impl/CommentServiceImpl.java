@@ -21,7 +21,6 @@ public class CommentServiceImpl implements ICommentService {
 
     @Override
     public String saveComment(Comment comment) {
-
         User usr = comment.getUser();
         comment.setUser(userRepository.findById(usr.getId()).get());
         Integer id = commentRepository.save(comment).getId();
@@ -32,11 +31,10 @@ public class CommentServiceImpl implements ICommentService {
     public String updateComment(Comment comment) {
         String resp = "";
         if (commentRepository.existsById(comment.getId())) {
-
             User usr = comment.getUser();
             comment.setUser(userRepository.findById(usr.getId()).get());
             Integer id = commentRepository.save(comment).getId();
-            resp = "comment updated with Id: " + id + " with user: " + comment.getUser().getId();
+            resp = "comment updated with Id: " + id + " for userId: " + comment.getUser().getId();
         } else {
             resp = "comment not present with Id: " + comment.getId();
         }

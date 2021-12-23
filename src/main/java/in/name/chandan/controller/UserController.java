@@ -22,7 +22,7 @@ public class UserController {
 
     //1. To Save user Data
     @PostMapping("/save")
-    public ResponseEntity<String> save(@RequestBody User user) {
+    public ResponseEntity<String> saveUser(@RequestBody User user) {
         ResponseEntity<String> resp = null;
         try {
             String message = userService.saveUser(user);
@@ -38,7 +38,7 @@ public class UserController {
 
     //2. to update user data
     @PutMapping("/update")
-    public ResponseEntity<String> editStudent(@RequestBody User user) {
+    public ResponseEntity<String> editUser(@RequestBody User user) {
         ResponseEntity<String> resp = null;
         try {
 
@@ -53,7 +53,7 @@ public class UserController {
 
     // 3. get one user
     @GetMapping("/one/{id}")
-    public ResponseEntity<?> getOneStudent(@PathVariable Integer id) {
+    public ResponseEntity<?> getOneUser(@PathVariable Integer id) {
         ResponseEntity<?> resp = null;
         try {
             User usr = userService.getOneUser(id);
@@ -67,7 +67,7 @@ public class UserController {
 
     // 4.get all User
     @GetMapping("/all")
-    public ResponseEntity<?> getAll() {
+    public ResponseEntity<?> getAllUser() {
         ResponseEntity<?> resp = null;
         try {
             List<User> list = userService.getAllUser();
@@ -85,7 +85,7 @@ public class UserController {
 
     //5. Delete one User
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteStudent(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteUser(@PathVariable Integer id) {
         ResponseEntity<String> resp = null;
         try {
             boolean exist = userRepository.existsById(id);

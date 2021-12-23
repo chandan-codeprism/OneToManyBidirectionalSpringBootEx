@@ -35,7 +35,6 @@ public class UserServiceImpl implements IUserService {
         } else {
             resp = "User with id: " + user.getId() + " Does not exist";
         }
-
         return resp;
     }
 
