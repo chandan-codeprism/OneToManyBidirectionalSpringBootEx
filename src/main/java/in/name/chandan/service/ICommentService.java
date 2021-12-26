@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface ICommentService {
 
-    public String saveComment(Comment comment);
+    String saveComment(Comment comment);
 
-    public String updateComment(Comment comment);
+    String updateComment(Comment comment);
 
-    public Comment getOneComment(Integer id);
+    Comment getOneComment(Integer id);
 
-    public List<Comment> getAllComment();
+    List<Comment> getAllComment();
 
-    public void deleteComment(Integer id);
+    void deleteComment(Integer id);
 
 }

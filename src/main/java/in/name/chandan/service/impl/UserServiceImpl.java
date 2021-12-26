@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -40,7 +41,8 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User getOneUser(Integer id) {
-        return userRepository.findById(id).get();
+        Optional<User> optional = userRepository.findById(id);
+        return optional.orElse(null);
     }
 
     @Override
@@ -51,6 +53,11 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
-
     }
+
+    @Override
+    public List<User> getUserByName(String name) {
+        return userRepository.findByName(name);
+    }
+
 }

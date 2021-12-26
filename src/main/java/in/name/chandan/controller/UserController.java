@@ -59,7 +59,7 @@ public class UserController {
             User usr = userService.getOneUser(id);
             resp = new ResponseEntity<User>(usr, HttpStatus.OK);
         } catch (Exception e) {
-            resp = new ResponseEntity<String>("Unable to fetch data", HttpStatus.INTERNAL_SERVER_ERROR);
+            resp = new ResponseEntity<String>("Id not present", HttpStatus.NOT_FOUND);
             e.printStackTrace();
         }
         return resp;
@@ -103,4 +103,20 @@ public class UserController {
         return resp;
     }
 
+    @GetMapping("/{name}")
+    public ResponseEntity<?> getUserByName(@PathVariable String name) {
+        ResponseEntity<?> resp = null;
+        try {
+            List<User> list = userService.getUserByName(name);
+            if (list != null && !list.isEmpty()) {
+                resp = new ResponseEntity<List<User>>(list, HttpStatus.OK);
+            } else {
+                resp = new ResponseEntity<String>("No data found", HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            resp = new ResponseEntity<String>("Unable to fetch data", HttpStatus.INTERNAL_SERVER_ERROR);
+            e.printStackTrace();
+        }
+        return resp;
+    }
 }

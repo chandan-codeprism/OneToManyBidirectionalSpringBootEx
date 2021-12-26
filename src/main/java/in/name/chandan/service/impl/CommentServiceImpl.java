@@ -31,10 +31,10 @@ public class CommentServiceImpl implements ICommentService {
     public String updateComment(Comment comment) {
         String resp = "";
         if (commentRepository.existsById(comment.getId())) {
-            User usr = comment.getUser();
-            comment.setUser(userRepository.findById(usr.getId()).get());
+            User usr = commentRepository.findById(comment.getId()).get().getUser();
+            comment.setUser(usr);
             Integer id = commentRepository.save(comment).getId();
-            resp = "comment updated with Id: " + id + " for userId: " + comment.getUser().getId();
+            resp = "comment updated with Id: " + comment.getId();
         } else {
             resp = "comment not present with Id: " + comment.getId();
         }

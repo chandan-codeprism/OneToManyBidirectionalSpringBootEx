@@ -2,6 +2,7 @@ package in.name.chandan.controller;
 
 import in.name.chandan.entity.Comment;
 import in.name.chandan.repo.CommentRepository;
+import in.name.chandan.repo.UserRepository;
 import in.name.chandan.service.ICommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,9 @@ public class CommentController {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     //1. To  add new comment
     @PostMapping("/add")
@@ -41,7 +45,6 @@ public class CommentController {
     public ResponseEntity<String> updateComment(@RequestBody Comment comment) {
         ResponseEntity<String> resp = null;
         try {
-
             String message = commentService.updateComment(comment);
             resp = new ResponseEntity<String>(message, HttpStatus.OK);
         } catch (Exception e) {
@@ -102,6 +105,4 @@ public class CommentController {
         }
         return resp;
     }
-
-
 }
