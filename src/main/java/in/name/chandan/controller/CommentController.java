@@ -117,4 +117,18 @@ public class CommentController {
         }
         return resp;
     }
+
+    //2. to update multiple comment for multiple users
+    @PutMapping("/updateMultipleComment")
+    public ResponseEntity<String> updateMultipleComment(@RequestBody List<Comment> comments) {
+        ResponseEntity<String> resp = null;
+        try {
+            String message = commentService.updateMultipleComment(comments);
+            resp = new ResponseEntity<String>(message, HttpStatus.OK);
+        } catch (Exception e) {
+            resp = new ResponseEntity<String>("unable to update", HttpStatus.INTERNAL_SERVER_ERROR);
+            e.printStackTrace();
+        }
+        return resp;
+    }
 }

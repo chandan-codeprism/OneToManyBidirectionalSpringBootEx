@@ -19,4 +19,6 @@ public interface ICommentService {
 
     String addMultipleComment(List<Comment> comments);
 
+    String updateMultipleComment(List<Comment> comments);
+
 }
