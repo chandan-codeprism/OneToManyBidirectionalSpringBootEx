@@ -94,7 +94,6 @@ public class CommentController {
             if (exist) {
                 commentService.deleteComment(id);
                 resp = new ResponseEntity<String>("Successfully " + id + " Removed", HttpStatus.OK);
-
             } else {
                 resp = new ResponseEntity<String>("Failed...Id does not exist", HttpStatus.BAD_REQUEST);
             }
@@ -104,6 +103,7 @@ public class CommentController {
         }
         return resp;
     }
+
     //Add multiple comment for multiple user
     @PostMapping("/saveMultipleComment")
     public ResponseEntity<String> saveMultipleComments(@RequestBody List<Comment> comments) {
@@ -118,7 +118,7 @@ public class CommentController {
         return resp;
     }
 
-    //2. to update multiple comment for multiple users
+    //2. to update multiple comment at one request
     @PutMapping("/updateMultipleComment")
     public ResponseEntity<String> updateMultipleComment(@RequestBody List<Comment> comments) {
         ResponseEntity<String> resp = null;

@@ -61,13 +61,14 @@ public class CommentServiceImpl implements ICommentService {
     public String addMultipleComment(List<Comment> comments) {
         String resp = "";
         for (Comment comment : comments) {
-            if (userRepository.existsById(comment.getId())) {
-                User usr = commentRepository.findById(comment.getId()).get().getUser();
-                comment.setUser(usr);
-                commentRepository.save(comment).getId();
-                resp = "multiple comments added";
-            } else
-                resp = "User is not present with id: " + comment.getUser().getId();
+            if (userRepository.existsById(comment.getUser().getId())) {
+                User usr = comment.getUser();
+                comment.setUser(userRepository.findById(usr.getId()).get());
+                Integer id = commentRepository.save(comment).getId();
+                resp = "Multiple comments added";
+            } else {
+                resp = "User is not present with id:" + comment.getUser().getId();
+            }
         }
         return resp;
     }
