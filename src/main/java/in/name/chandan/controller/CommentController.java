@@ -36,7 +36,6 @@ public class CommentController {
             resp = new ResponseEntity<String>("Unable to save data", HttpStatus.OK);
             e.printStackTrace();
         }
-
         return resp;
     }
 
@@ -101,6 +100,19 @@ public class CommentController {
             }
         } catch (Exception e) {
             resp = new ResponseEntity<String>("Fail...Unable to delete", HttpStatus.INTERNAL_SERVER_ERROR);
+            e.printStackTrace();
+        }
+        return resp;
+    }
+    //Add multiple comment for multiple user
+    @PostMapping("/saveMultipleComment")
+    public ResponseEntity<String> saveMultipleComments(@RequestBody List<Comment> comments) {
+        ResponseEntity<String> resp = null;
+        try {
+            String message = commentService.addMultipleComment(comments);
+            resp = new ResponseEntity<String>(message, HttpStatus.OK);
+        } catch (Exception e) {
+            resp = new ResponseEntity<String>("Unable to save data", HttpStatus.OK);
             e.printStackTrace();
         }
         return resp;

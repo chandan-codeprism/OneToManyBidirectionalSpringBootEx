@@ -17,4 +17,6 @@ public interface ICommentService {
 
     void deleteComment(Integer id);
 
+    String addMultipleComment(List<Comment> comments);
+
 }
